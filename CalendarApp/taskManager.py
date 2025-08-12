@@ -27,7 +27,7 @@ class TaskManager:
         for t in self.tasks:
             if task.overlaps(t):
                 raise ValueError(f"{task.name} overlaps with {t.name}")
-        day.task_list.append(task)
+        self.tasks.append(task)
 
 
 
@@ -40,6 +40,10 @@ class TaskManager:
         self.schedule.remove_task(task)
 
 
+    def write_calendar(self):
+        with open("schedule.txt", "w") as file:
+            for task in self.tasks:
+                file.write(f"{task.name}")
 
 
 
@@ -49,9 +53,5 @@ class TaskManager:
 
 
 
-another_starting_time = datetime.datetime(2025,7,31)
 
-my_task = Task(another_starting_time, datetime.timedelta(hours=2), "Do the laundry", complete=False)
-print(my_task.title)
-my_task.title = "Complete HW #6"
-print(my_task.title)
+

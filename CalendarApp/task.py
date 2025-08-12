@@ -19,11 +19,6 @@ class TimeBlock:
 
 
 class Week(TimeBlock):
-    """def __init__(self, string_date: str = None): # Assumes that string_date is only a date that is a Sunday
-        super().__init__(duration=datetime.timedelta(weeks=1))
-        self.string_date = string_date # The start day of the week as a type of string (e.g., "July 30, 2025")
-        self.week_start: datetime.datetime = datetime.datetime.strptime(self.string_date, "%B %d, %Y")
-        self.habits_this_week = []"""
 
     def __init__(self, week_start: datetime.datetime):  # Assumes that string_date is only a date that is a Sunday
         super().__init__(time_start=week_start, duration=datetime.timedelta(weeks=1))
@@ -59,6 +54,7 @@ class Week(TimeBlock):
 
 
 class Day(TimeBlock):
+    """A Day starts from an exact time and ends one day after"""
     def __init__(self, time_start: datetime.datetime):
         super().__init__(duration=datetime.timedelta(days=1), time_start=time_start)
         self.task_list: list[str] = []
@@ -82,7 +78,8 @@ class Task(TimeBlock):
 
     @property
     def name(self):
-        return f"({self.time_start} {self.duration} {self.title})"
+        return f"Time: {self.time_start.strftime('%A, %B %d, %Y %I:%M %p')}\tDuration: {self.duration}\tTask Name: {self.title}"
+
 
 
     @property

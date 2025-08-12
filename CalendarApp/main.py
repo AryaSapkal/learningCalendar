@@ -13,8 +13,10 @@ def main():
 
     task_manager.add_task(some_day, some_task)
 
+    for t in task_manager.tasks:
+        print(t.name)
 
-    print(task_manager.tasks)
+    task_manager.write_calendar()
 
 
 
