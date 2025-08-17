@@ -25,6 +25,22 @@ def main():
 
 
 
+"""
+a_starting_time = datetime.datetime(2025, 7, 31)
+
+my_week = task.Week("July 31, 2025")
+my_week.print_week()
+print(my_week.daySentence)
+print(my_week.habit)
+
+my_week.habit = ["Sleep 30 minutes earlier each night."]
+print(my_week.habit)
+"""
+
+
+
+
+
 
 
 
@@ -36,20 +52,3 @@ if __name__ == '__main__':
 
 
 
-"""
-
-
-
-a_starting_time = datetime.datetime(2025, 7, 31)
-
-my_week = Week("July 31, 2025")
-my_week.print_week()
-print(my_week.daySentence)
-print(my_week.habit)
-
-my_week.habit = ["Sleep 30 minutes earlier each night."]
-print(my_week.habit)
-
-
-
-"""

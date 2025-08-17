@@ -3,6 +3,28 @@ import task
 from task import Task
 import datetime
 from schedule import Schedule
+import sqlite3
+
+
+conn = sqlite3.connect('tasks.db', isolation_level=None)
+
+c = conn.cursor()
+
+# c.execute("CREATE TABLE tasks (task_name text, time_start text, duration text, description text)")
+
+some_desciption = "Here is some description."
+
+c.execute("INSERT INTO tasks VALUES (:task_name, :time_start, :duration, :description)",
+{'task_name':'Do the laundry',
+            'time_start':f'{datetime.datetime.now().strftime("%A, %B %d, %Y %H:%M:%S")}',
+            'duration':str(datetime.timedelta(hours=2)),
+            'description': some_desciption})
+
+c.execute("SELECT * FROM tasks")
+
+print(c.fetchall())
+
+conn.close()
 
 
 class TaskManager:
