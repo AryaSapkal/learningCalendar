@@ -75,6 +75,7 @@ class Task(TimeBlock):
         self.description = description
         self.complete = complete
         self.priority = priority
+        self.__db_id = None
 
     @property
     def name(self):

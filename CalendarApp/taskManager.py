@@ -14,11 +14,11 @@ c = conn.cursor()
 
 some_desciption = "Here is some description."
 
-c.execute("INSERT INTO tasks VALUES (:task_name, :time_start, :duration, :description)",
+"""c.execute("INSERT INTO tasks VALUES (:task_name, :time_start, :duration, :description)",
 {'task_name':'Do the laundry',
             'time_start':f'{datetime.datetime.now().strftime("%A, %B %d, %Y %H:%M:%S")}',
             'duration':str(datetime.timedelta(hours=2)),
-            'description': some_desciption})
+            'description': some_desciption})"""
 
 c.execute("SELECT * FROM tasks")
 
@@ -42,6 +42,10 @@ class TaskManager:
 
 
 
+    
+
+
+
 
 
     # Adding task should only take in one argument, which is task. The task object will already contain the time for which it is to be done
@@ -49,7 +53,8 @@ class TaskManager:
         for t in self.tasks:
             if task.overlaps(t):
                 raise ValueError(f"{task.name} overlaps with {t.name}")
-        self.tasks.append(task)
+        self.schedule.add_task(task)
+        #self.tasks.append(task)
 
 
 
