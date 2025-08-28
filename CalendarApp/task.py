@@ -68,6 +68,9 @@ class Day(TimeBlock):
         return self.time_start + self.duration
 
 
+
+
+
 class Task(TimeBlock):
     def __init__(self, time_start: datetime.datetime, duration: datetime.timedelta, title: str | None = None, description: str | None = None, complete: bool = False, priority: int | None = None):
         super().__init__(time_start, duration)
@@ -75,7 +78,7 @@ class Task(TimeBlock):
         self.description = description
         self.complete = complete
         self.priority = priority
-        self.__db_id = None
+        self.db_id = None
 
     @property
     def name(self):

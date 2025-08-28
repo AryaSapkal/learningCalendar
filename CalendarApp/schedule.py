@@ -3,8 +3,6 @@ import sqlite3
 
 class Schedule:
     def __init__(self):
-        #self.timeline = []
-        #self.task_list = []
         conn = sqlite3.connect('tasks.db', isolation_level=None)
         c = conn.cursor()
         with conn:
@@ -13,29 +11,45 @@ class Schedule:
                     task_name TEXT NOT NULL,
                     description TEXT,
                     start_time TEXT NOT NULL, 
-                    duration INTEGER NOT NULL""")
+                    duration INTEGER NOT NULL
+                    )""")
 
 
-    def add_task(self, task: Task):
-        conn = sqlite3.connect('tasks.db')
+    def create_task(self, task: Task):
+        conn = sqlite3.connect('tasks.db', isolation_level=None)
         c = conn.cursor()
         with conn:
-            c.execute("INSERT INTO tasks VALUES (:task, :task_name, :time_start, :duration, :description)",
-                  {'task': task.db_id,
+            c.execute("INSERT INTO tasks VALUES (:id, :task_name, :description, :start_time, :duration)",
+                  {'id': task.db_id,
                       'task_name': task.name,
-                   'time_start': str(task.time_start),
+                   'description': task.description,
+                   'start_time': str(task.time_start),
                    'duration': str(task.duration),
-                   'description': task.description})
+                   })
             id = c.lastrowid
-        task.__db_id = id
+        task.db_id = id
 
 
-    def remove_task(self, task: Task):
-        conn = sqlite3.connect('tasks.db')
+
+    def update_task(self, task: Task):
+        conn = sqlite3.connect('tasks.db', isolation_level=None)
         c = conn.cursor()
         with conn:
-            c.execute("DELETE FROM tasks WHERE ")
+            c.execute(f"""UPDATE tasks
+                        SET task_name = {task.title}, time_start = {task.time_start}, duration = {task.duration}, description = {task.description}
+                        WHERE id={task.db_id}
+            """)
 
-        if task in self.task_list:
-            self.task_list.remove(task)
+
+
+    def delete_task(self, task: Task):
+        conn = sqlite3.connect('tasks.db', isolation_level=None)
+        c = conn.cursor()
+        with conn:
+            c.execute(f"DELETE FROM tasks WHERE id={task.db_id}")
+
+
+
+
+
 

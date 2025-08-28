@@ -10,7 +10,7 @@ conn = sqlite3.connect('tasks.db', isolation_level=None)
 
 c = conn.cursor()
 
-# c.execute("CREATE TABLE tasks (task_name text, time_start text, duration text, description text)")
+c.execute("CREATE TABLE IF NOT EXISTS tasks (task_name text, time_start text, duration text, description text)")
 
 some_desciption = "Here is some description."
 
