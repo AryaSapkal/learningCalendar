@@ -1,0 +1,8 @@
+<li class="d-flex justify-content-between align-items-start mb-2">
+  <div>
+    <strong>{{ task.start }} - {{ task.end }}</strong> &emsp; {{ task.name }}
+    {% if task.description %}
+      <small class="text-muted ms-3">{{ task.description }}</small>
+    {% endif %}
+  </div>
+</li>

@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-<body>
-    <h1>Home Page</h1>
-</body>
-</html>
+
+{% extends "layout.html" %}
+{% block content %}
+    {% for task in tasks %}
+
+        <h1>Title: {{ task.task_name }}</h1>
+        <p>Start: {{ task.start_time }}</p>
+        <p>Duration: {{ task.duration }}</p>
+        {% include "task_row.html" %}
+    {% endfor %}
+
+
+{% endblock content %}
+
+
+
