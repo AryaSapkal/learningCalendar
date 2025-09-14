@@ -3,8 +3,14 @@ from taskManager import TaskManager
 import datetime
 import sqlite3
 from flask import Flask, render_template
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 app = Flask(__name__)
+
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 
 
